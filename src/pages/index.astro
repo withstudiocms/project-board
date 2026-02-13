@@ -14,12 +14,32 @@ const orgData = await fetchOrganization(org);
 const url = new URL(Astro.request.url);
 const state = url.searchParams.get('state') || 'open';
 const type = url.searchParams.get('type') || 'all';
+const labelsParam = url.searchParams.get('labels') || '';
+const selectedLabels = labelsParam ? labelsParam.split(',').filter(Boolean) : [];
 
 // Fetch data
 const allItems = await fetchAllItems(org, { 
   state: state as 'open' | 'closed' | 'all',
   type: type as 'issue' | 'pr' | 'discussion' | 'all',
 });
+
+// Extract all unique labels from items
+const allLabelsSet = new Set<string>();
+allItems.forEach(item => {
+  item.labels.forEach(label => {
+    allLabelsSet.add(label.name);
+  });
+});
+const allLabels = Array.from(allLabelsSet).sort();
+
+// Filter items by selected labels if any
+let filteredItems = allItems;
+if (selectedLabels.length > 0) {
+  filteredItems = allItems.filter(item => {
+    const itemLabelNames = item.labels.map(l => l.name);
+    return selectedLabels.some(label => itemLabelNames.includes(label));
+  });
+}
 
 // Get repositories and organize items by repository
 const repositories = await getOrgRepositories(org);
@@ -28,9 +48,9 @@ const repositories = await getOrgRepositories(org);
 const sortedRepositories = repositories.sort(config.repositorySort);
 
 // Group items by repository
-const itemsByRepo = new Map<string, typeof allItems>();
+const itemsByRepo = new Map<string, typeof filteredItems>();
 sortedRepositories.forEach(repo => {
-  const repoItems = allItems.filter(item => item.repository === repo);
+  const repoItems = filteredItems.filter(item => item.repository === repo);
   if (repoItems.length > 0) {
     itemsByRepo.set(repo, repoItems.sort((a, b) => new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime()));
   } else {
@@ -65,6 +85,8 @@ const description = `Issues, Pull Requests, and Discussions for ${org}`;
   <FilterBar 
     currentState={state}
     currentType={type}
+    currentLabels={selectedLabels}
+    allLabels={allLabels}
   />
   
   {itemsByRepo.size === 0 ? (
