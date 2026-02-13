@@ -17,6 +17,9 @@ importers:
       astro-og-canvas:
         specifier: ^0.10.1
         version: 0.10.1(astro@5.17.2(@types/node@25.2.3)(rollup@4.57.1)(typescript@5.9.3))
+      canvaskit-wasm:
+        specifier: ^0.40.0
+        version: 0.40.0
       markdown-it:
         specifier: ^14.1.1
         version: 14.1.1
