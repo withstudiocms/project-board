@@ -56,7 +56,6 @@ SSR Astro application for displaying GitHub issues, PRs, and discussions for any
 - **Rate Limiting**: Respects GitHub rate limits, token recommended
 
 ## Development Guidelines
-1. Use GitHub MCP tools when available for API exploration
 2. All shared styles go in `global.css`, use CSS variables
 3. Keep components focused and reusable
 4. Cache API responses appropriately
