@@ -1,5 +1,7 @@
 # GitHub Project Board
 
+<img width="2333" height="1197" alt="image" src="https://github.com/user-attachments/assets/b37b3710-a991-4595-a420-02dacaeb5945" />
+
 A server-side rendered Astro application that provides a unified view of GitHub issues, pull requests, and discussions for any GitHub organization. Features repository tabs, advanced filtering, and a dedicated roadmap page with README viewer.
 
 ## Features
