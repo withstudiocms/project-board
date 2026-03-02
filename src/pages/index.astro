@@ -1,15 +1,11 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { fetchOrganization } from "../lib/github";
 import { config } from "../config";
 import IndexIsland from "src/components/IndexIsland.astro";
 import Loading from "src/components/Loading.astro";
 import FilterBarScript from "src/components/FilterBarScript.astro";
 
 const org = config.organization;
-
-// Fetch organization details for avatar
-const orgData = await fetchOrganization(org);
 
 // Get query parameters
 const url = new URL(Astro.request.url);
@@ -28,7 +24,6 @@ const description = `Issues, Pull Requests, and Discussions for ${org}`;
   title={title}
   description={description}
   slug="index"
-  avatarUrl={orgData?.avatar_url}
 >
   <div slot="navigation" style="display: flex; gap: 1rem; align-items: center;">
     <a href="/roadmap">View Roadmap →</a>
