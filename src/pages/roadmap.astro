@@ -1,15 +1,11 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { fetchOrganization } from '../lib/github';
 import { config } from '../config';
 import RoadmapBodyIsland from 'src/components/RoadmapBodyIsland.astro';
 import Loading from 'src/components/Loading.astro';
 
 const org = config.organization;
 const roadmapRepo = config.roadmapRepository;
-
-// Fetch organization details for avatar
-const orgData = await fetchOrganization(org);
 
 const title = `${org} Roadmap`;
 const description = `Roadmap RFCs for ${org}`;
@@ -18,8 +14,7 @@ const description = `Roadmap RFCs for ${org}`;
 <BaseLayout 
 	title={title} 
     description={description}
-    slug="roadmap"
-    avatarUrl={orgData?.avatar_url}>
+    slug="roadmap">
   <div slot="navigation" style="display: flex; gap: 1rem; align-items: center;">
     <a href="/">← Back to Project Board</a>
     <button id="readme-button" class="readme-button">📖 View README</button>
