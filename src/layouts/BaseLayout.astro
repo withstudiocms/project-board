@@ -17,7 +17,7 @@ const { title, description, slug } = Astro.props;
 console.log("---");
 console.log("Astro.url:", Astro.url);
 console.log("---");
-console.log("Astro.request");
+console.log("Astro.request", Astro.request);
 console.log("---")
 
 const baseUrl = process.env.NODE_ENV === 'development'
