@@ -1,7 +1,8 @@
 import { defineConfig } from 'astro/config';
 import node from '@astrojs/node';
 
-const primarySiteDomain = 'project-board-demo.studiocms.dev';
+const primarySiteDomain = process.env.NODE_ENV === 'production'
+  ? process.env.DOKPLOY_DEPLOY_URL : 'project-board-demo.studiocms.dev';
 
 // https://astro.build/config
 export default defineConfig({
@@ -11,25 +12,16 @@ export default defineConfig({
     mode: 'standalone'
   }),
   security: {
-    allowedDomains: [
-      // Replace this value with your deployment provider's Environment variable for the deployment URL, if available for Preview deployments.
-      ...(process.env.DOKPLOY_DEPLOY_URL
-        ? [
-          {
-            hostname: process.env.DOKPLOY_DEPLOY_URL,
-            protocol: 'https:',
-          },
-        ]
-        : [
-          {
-            hostname: primarySiteDomain,
-            protocol: 'https:',
-          },
-          {
-            hostname: 'localhost',
-            protocol: 'http:',
-          },
-        ]),
+    allowedDomains: process.env.NODE_ENV === 'production' ? [
+      {
+        hostname: primarySiteDomain,
+        protocol: 'https:',
+      },
+    ] : [
+      {
+        hostname: 'localhost',
+        protocol: 'http:',
+      }
     ]
   },
 });
