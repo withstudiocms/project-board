@@ -14,6 +14,12 @@ interface Props {
 
 const { title, description, slug } = Astro.props;
 
+console.log("---");
+console.log("Astro.url:", Astro.url);
+console.log("---");
+console.log("Astro.request");
+console.log("---")
+
 const baseUrl = process.env.NODE_ENV === 'development'
   ? "http://localhost:4321"
   : new URL(Astro.site || Astro.request.url).origin;
@@ -32,6 +38,7 @@ const faviconType = config.openGraph?.favicon?.type || 'image/svg+xml';
     <meta name="viewport" content="width=device-width" />
     <meta name="theme-color" content={themeColor} />
     <link rel="icon" type={faviconType} href={faviconPath} />
+    <meta name="generator" content={Astro.generator} />
 
     <title>{title}</title>
     <meta name="description" content={description}>
