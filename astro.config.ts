@@ -15,7 +15,7 @@ export default defineConfig({
   security: {
     allowedDomains: [
       {
-        hostname: primarySiteDomain,
+        hostname: '*.studiocms.dev',
       },
     ]
   },
