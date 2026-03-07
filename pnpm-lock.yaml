@@ -34,7 +34,7 @@ importers:
         specifier: ^25.2.3
         version: 25.2.3
       dotenv:
-        specifier: ^17.2.3
+        specifier: ^17.3.1
         version: 17.3.1
       dotenv-cli:
         specifier: ^11.0.0
