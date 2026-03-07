@@ -13,16 +13,10 @@ export default defineConfig({
     mode: 'standalone',
   }),
   security: {
-    allowedDomains: process.env.NODE_ENV === 'production' ? [
+    allowedDomains: [
       {
         hostname: primarySiteDomain,
-        protocol: 'https:',
       },
-    ] : [
-      {
-        hostname: 'localhost',
-        protocol: 'http:',
-      }
     ]
   },
 });
