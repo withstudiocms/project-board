@@ -4,7 +4,7 @@
 SSR Astro application for displaying GitHub issues, PRs, and discussions for any GitHub organization. Features a tabbed repository view, filtering capabilities, and a dedicated roadmap page with README viewer.
 
 ## Tech Stack
-- **Framework**: Astro v5 with SSR enabled (@astrojs/node adapter)
+- **Framework**: Astro v6 with SSR enabled (@astrojs/node adapter)
 - **Language**: TypeScript
 - **APIs**: GitHub REST API + GraphQL for discussions
 - **Styling**: Unified global CSS with CSS variables for theming

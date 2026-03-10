@@ -17,7 +17,7 @@ A server-side rendered Astro application that provides a unified view of GitHub 
 
 ## Tech Stack
 
-- **Astro v5** - SSR-enabled with @astrojs/node adapter
+- **Astro v6** - SSR-enabled with @astrojs/node adapter
 - **TypeScript** - Type-safe development
 - **GitHub REST API** - Issues, PRs, releases, repositories
 - **GitHub GraphQL** - Discussions (requires token)
@@ -28,7 +28,7 @@ A server-side rendered Astro application that provides a unified view of GitHub 
 
 ### Prerequisites
 
-- Node.js 20+ or latest LTS
+- Node.js 22+ or latest LTS
 - pnpm package manager
 - (Optional) GitHub Personal Access Token for higher rate limits
 
